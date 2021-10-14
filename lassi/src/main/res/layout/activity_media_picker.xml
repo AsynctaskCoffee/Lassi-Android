@@ -4,27 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".presentation.mediadirectory.LassiMediaPickerActivity"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@android:color/black"
-        android:clipToPadding="false"
-        android:elevation="2dp"
-        app:contentInsetEnd="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp" />
+        android:layout_height="?actionBarSize"
+        android:background="#222222">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="?actionBarSize"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:onClick="finish"
+            app:srcCompat="@drawable/ic_cancel"
+            app:tint="#ffffff" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/pasifico"
+            android:gravity="center"
+            android:text="- Spiffy Shoot -"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="?actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:padding="15dp"
+            app:tint="#ffffff" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/ftContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         tools:layout="@layout/fragment_media_picker" />
 </LinearLayout>

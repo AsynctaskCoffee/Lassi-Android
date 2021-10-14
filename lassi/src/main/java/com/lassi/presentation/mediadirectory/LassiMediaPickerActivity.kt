@@ -63,24 +63,12 @@ class LassiMediaPickerActivity : LassiBaseViewModelActivity<SelectedMediaViewMod
             override fun restoreInstanceState(@NonNull target: Any, @Nullable state: Bundle?) {
             }
         })
-        setToolbarTitle(LassiConfig.getConfig().selectedMedias)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setThemeAttributes()
         initiateFragment()
     }
 
     private fun setToolbarTitle(selectedMedias: ArrayList<MiMedia>) {
         val maxCount = LassiConfig.getConfig().maxCount
-        if (maxCount > 1) {
-            toolbar.title = String.format(
-                getString(R.string.selected_items),
-                selectedMedias.size,
-                maxCount
-            )
-        } else {
-            toolbar.title = ""
-        }
     }
 
     private fun initiateFragment() {
@@ -112,16 +100,6 @@ class LassiMediaPickerActivity : LassiBaseViewModelActivity<SelectedMediaViewMod
 
     private fun setThemeAttributes() {
         with(LassiConfig.getConfig()) {
-            toolbar.background =
-                ColorDrawable(toolbarColor)
-            toolbar.setTitleTextColor(toolbarResourceColor)
-            supportActionBar?.setHomeAsUpIndicator(
-                changeIconColor(
-                    this@LassiMediaPickerActivity,
-                    R.drawable.ic_back_white,
-                    toolbarResourceColor
-                )
-            )
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                 window.statusBarColor = statusBarColor
@@ -240,6 +218,10 @@ class LassiMediaPickerActivity : LassiBaseViewModelActivity<SelectedMediaViewMod
             putExtra(KeyUtils.SELECTED_MEDIA, selectedMedia)
         }
         setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    fun finish(view: android.view.View) {
         finish()
     }
 }
