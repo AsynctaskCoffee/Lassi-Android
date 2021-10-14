@@ -8,8 +8,6 @@ import com.lassi.domain.media.LassiConfig
 fun ImageView.loadImage(source: String?) {
     Glide.with(context)
         .load(source ?: "")
-        .error(LassiConfig.getConfig().errorDrawable)
-        .placeholder(LassiConfig.getConfig().placeHolder)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(this)
 }
