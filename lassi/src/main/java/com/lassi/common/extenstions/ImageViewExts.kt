@@ -8,6 +8,8 @@ import com.lassi.domain.media.LassiConfig
 fun ImageView.loadImage(source: String?) {
     Glide.with(context)
         .load(source ?: "")
-        .transition(DrawableTransitionOptions.withCrossFade())
+        .thumbnail(0.1f)
+        .override(200, 200) // resizes the image to these dimensions (in pixel)
+        .fitCenter()
         .into(this)
 }
