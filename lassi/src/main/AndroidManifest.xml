@@ -8,15 +8,18 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
+        android:hardwareAccelerated="true"
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true">
         <activity
             android:name=".presentation.mediadirectory.LassiMediaPickerActivity"
+            android:hardwareAccelerated="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".presentation.cropper.CropImageActivity"
+            android:hardwareAccelerated="true"
             android:resizeableActivity="false"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="false"
@@ -24,6 +27,7 @@
             tools:targetApi="n" />
         <activity
             android:name=".presentation.videopreview.VideoPreviewActivity"
+            android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>
