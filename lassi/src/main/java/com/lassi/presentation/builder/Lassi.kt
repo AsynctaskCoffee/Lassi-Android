@@ -10,6 +10,7 @@ import com.lassi.common.utils.KeyUtils
 import com.lassi.domain.media.LassiConfig
 import com.lassi.domain.media.LassiOption
 import com.lassi.domain.media.MediaType
+import com.lassi.domain.media.SortingOption
 import com.lassi.presentation.cameraview.controls.AspectRatio
 import com.lassi.presentation.cropper.CropImageView
 import com.lassi.presentation.mediadirectory.LassiMediaPickerActivity
@@ -27,6 +28,19 @@ class Lassi(private val context: Context) {
             KeyUtils.DEFAULT_MEDIA_COUNT
         } else {
             maxCount
+        }
+        return this
+    }
+
+    /**
+     * Default sorting
+     * 1 - Ascending
+     * 0 - Descending
+     */
+    fun setAscSort(ascFlag: SortingOption): Lassi {
+        lassiConfig.ascFlag = when (ascFlag) {
+            SortingOption.ASCENDING -> KeyUtils.ASCENDING_ORDER
+            SortingOption.DESCENDING -> KeyUtils.DESCENDING_ORDER
         }
         return this
     }
@@ -150,6 +164,14 @@ class Lassi(private val context: Context) {
     }
 
     /**
+     * Set gallery background color resource
+     */
+    fun setGalleryBackgroundColor(@ColorRes color: Int): Lassi {
+        lassiConfig.galleryBackgroundColor = ContextCompat.getColor(context, color)
+        return this
+    }
+
+    /**
      * Set progressbar color hex
      */
     fun setProgressBarColor(progressBarColor: String): Lassi {
@@ -234,7 +256,7 @@ class Lassi(private val context: Context) {
     /**
      * Set compression ration between 0 to 100 (Only for single image selection)
      */
-    fun setCompressionRation(compressionRation: Int): Lassi {
+    fun setCompressionRatio(compressionRation: Int): Lassi {
         val compression = if (compressionRation > 100) {
             100
         } else {
@@ -261,6 +283,32 @@ class Lassi(private val context: Context) {
         if (fileSize > 0) {
             lassiConfig.maxFileSize = fileSize
         }
+        return this
+    }
+
+    /**
+     * Set color for the Negative button of the Alert dialog
+     */
+    fun setAlertDialogNegativeButtonColor(@ColorRes negativeBtnColor: Int): Lassi {
+        lassiConfig.alertDialogNegativeButtonColor =
+            ContextCompat.getColor(context, negativeBtnColor)
+        return this
+    }
+
+    /**
+     * Set color for the Positive button of the Alert dialog
+     */
+    fun setAlertDialogPositiveButtonColor(@ColorRes positiveBtnColor: Int): Lassi {
+        lassiConfig.alertDialogPositiveButtonColor =
+            ContextCompat.getColor(context, positiveBtnColor)
+        return this
+    }
+
+    /**
+     * To set custom error message when picked items exceeds the defined maxCount
+     */
+    fun setCustomLimitExceedingErrorMessage(errorMessage: Int): Lassi {
+        lassiConfig.customLimitExceedingErrorMessage = errorMessage
         return this
     }
 

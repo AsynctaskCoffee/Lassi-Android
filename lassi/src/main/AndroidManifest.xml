@@ -1,11 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.lassi">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Required only if your app targets Android 13+. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <!-- Required to maintain app compatibility. -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:hardwareAccelerated="true"
@@ -14,20 +24,23 @@
         <activity
             android:name=".presentation.mediadirectory.LassiMediaPickerActivity"
             android:hardwareAccelerated="true"
+            android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".presentation.cropper.CropImageActivity"
             android:hardwareAccelerated="true"
+            android:exported="true"
             android:resizeableActivity="false"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="false"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.cropper"
             tools:targetApi="n" />
         <activity
             android:name=".presentation.videopreview.VideoPreviewActivity"
             android:hardwareAccelerated="true"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

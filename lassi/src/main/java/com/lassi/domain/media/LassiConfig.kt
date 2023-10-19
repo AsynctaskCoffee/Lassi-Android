@@ -1,5 +1,6 @@
 package com.lassi.domain.media
 
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
@@ -8,7 +9,7 @@ import com.lassi.common.utils.KeyUtils
 import com.lassi.data.media.MiMedia
 import com.lassi.presentation.cameraview.controls.AspectRatio
 import com.lassi.presentation.cropper.CropImageView
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class LassiConfig(
@@ -16,12 +17,14 @@ data class LassiConfig(
     var statusBarColor: Int = Color.BLACK,
     var toolbarResourceColor: Int = Color.WHITE,
     var progressBarColor: Int = Color.BLACK,
+    var galleryBackgroundColor: Int = Color.WHITE,
     @DrawableRes var placeHolder: Int = R.drawable.ic_image_placeholder,
     @DrawableRes var errorDrawable: Int = R.drawable.ic_image_placeholder,
     @DrawableRes var selectionDrawable: Int = R.drawable.ic_checked_media,
     var selectedMedias: ArrayList<MiMedia> = ArrayList(),
     var mediaType: MediaType = MediaType.IMAGE,
     var maxCount: Int = KeyUtils.DEFAULT_MEDIA_COUNT,
+    var ascFlag: Int = KeyUtils.DEFAULT_ORDER,
     var gridSize: Int = KeyUtils.DEFAULT_GRID_SIZE,
     var lassiOption: LassiOption = LassiOption.CAMERA_AND_GALLERY,
     var minTime: Long = KeyUtils.DEFAULT_DURATION,
@@ -35,7 +38,10 @@ data class LassiConfig(
     var compressionRation: Int = 0,
     var minFileSize: Long = KeyUtils.DEFAULT_FILE_SIZE,
     var maxFileSize: Long = KeyUtils.DEFAULT_FILE_SIZE,
-    var isCrop: Boolean = true
+    var isCrop: Boolean = true,
+    var alertDialogNegativeButtonColor: Int = Color.BLACK,
+    var alertDialogPositiveButtonColor: Int = Color.BLACK,
+    var customLimitExceedingErrorMessage: Int = R.string.default_exceed_error_msg
 ) : Parcelable {
     companion object {
 
@@ -47,9 +53,11 @@ data class LassiConfig(
                 statusBarColor = lassiConfig.statusBarColor
                 toolbarResourceColor = lassiConfig.toolbarResourceColor
                 progressBarColor = lassiConfig.progressBarColor
+                galleryBackgroundColor = lassiConfig.galleryBackgroundColor
                 selectedMedias = lassiConfig.selectedMedias
                 mediaType = lassiConfig.mediaType
                 maxCount = lassiConfig.maxCount
+                ascFlag= lassiConfig.ascFlag
                 gridSize = lassiConfig.gridSize
                 lassiOption = lassiConfig.lassiOption
                 minTime = lassiConfig.minTime
@@ -67,6 +75,9 @@ data class LassiConfig(
                 minFileSize = lassiConfig.minFileSize
                 maxFileSize = lassiConfig.maxFileSize
                 isCrop = lassiConfig.isCrop
+                alertDialogNegativeButtonColor = lassiConfig.alertDialogNegativeButtonColor
+                alertDialogPositiveButtonColor = lassiConfig.alertDialogPositiveButtonColor
+                customLimitExceedingErrorMessage = lassiConfig.customLimitExceedingErrorMessage
             }
         }
 
