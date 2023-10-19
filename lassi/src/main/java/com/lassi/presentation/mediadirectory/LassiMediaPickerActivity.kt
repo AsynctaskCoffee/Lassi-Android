@@ -2,8 +2,6 @@ package com.lassi.presentation.mediadirectory
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -93,24 +91,12 @@ class LassiMediaPickerActivity :
             override fun restoreInstanceState(@NonNull target: Any, @Nullable state: Bundle?) {
             }
         })
-        setToolbarTitle(LassiConfig.getConfig().selectedMedias)
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setThemeAttributes()
         initiateFragment()
     }
 
     private fun setToolbarTitle(selectedMedias: ArrayList<MiMedia>) {
-        val maxCount = LassiConfig.getConfig().maxCount
-        if (maxCount > 1) {
-            binding.toolbar.title = String.format(
-                getString(R.string.selected_items),
-                selectedMedias.size,
-                maxCount
-            )
-        } else {
-            binding.toolbar.title = ""
-        }
+
     }
 
     private fun initiateFragment() {
@@ -166,20 +152,8 @@ class LassiMediaPickerActivity :
 
     private fun setThemeAttributes() {
         with(LassiConfig.getConfig()) {
-            binding.toolbar.background =
-                ColorDrawable(toolbarColor)
-            binding.toolbar.setTitleTextColor(toolbarResourceColor)
-            supportActionBar?.setHomeAsUpIndicator(
-                changeIconColor(
-                    this@LassiMediaPickerActivity,
-                    R.drawable.ic_back_white,
-                    toolbarResourceColor
-                )
-            )
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                window.statusBarColor = statusBarColor
-            }
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = statusBarColor
         }
     }
 

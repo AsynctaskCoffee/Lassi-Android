@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".presentation.mediadirectory.LassiMediaPickerActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".presentation.mediadirectory.LassiMediaPickerActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -17,17 +17,15 @@
             android:id="@+id/back"
             android:layout_width="?actionBarSize"
             android:layout_height="match_parent"
-            android:padding="15dp"
             android:onClick="finish"
+            android:padding="15dp"
             app:srcCompat="@drawable/ic_cancel"
             app:tint="#ffffff" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/pasifico"
             android:gravity="center"
-            android:text="- Spiffy Shoot -"
             android:textColor="#ffffff"
             android:textSize="16sp" />
 
